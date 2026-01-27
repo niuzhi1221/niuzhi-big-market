@@ -1,5 +1,6 @@
 package com.niuzhi.infrastructure.persistent.dao;
 
+import com.niuzhi.domain.strategy.model.entity.StrategyAwardEntity;
 import com.niuzhi.infrastructure.persistent.po.Award;
 import com.niuzhi.infrastructure.persistent.po.StrategyAward;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,4 +17,6 @@ import java.util.List;
 @Mapper
 public interface IStrategyAwardDao {
     List<StrategyAward> queryStrategyAwardList();
+
+    List<StrategyAward> queryStrategyAwardListByStrategyId(Long strategyId);
 }
