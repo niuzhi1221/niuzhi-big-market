@@ -1,6 +1,8 @@
 package com.niuzhi.domain.strategy.repository;
 
 import com.niuzhi.domain.strategy.model.entity.StrategyAwardEntity;
+import com.niuzhi.domain.strategy.model.entity.StrategyEntity;
+import com.niuzhi.domain.strategy.model.entity.StrategyRuleEntity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -16,9 +18,15 @@ import java.util.List;
 public interface IStrategyRepository {
     List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId);
 
-    void storeStrategyAwardSearchRateTables(Long strategyId, int rateRange, HashMap<Integer, Integer> shuffleStrategyAwardSearchRateTables);
+    void storeStrategyAwardSearchRateTables(String key, int rateRange, HashMap<Integer, Integer> shuffleStrategyAwardSearchRateTables);
 
     int getRateRange(Long strategyId);
 
-    Integer getStrategyAwardAssemble(Long strategyId, int rateKey);
+    int getRateRange(String  key);
+
+    Integer getStrategyAwardAssemble(String key, int rateKey);
+
+    StrategyEntity queryStrategyEntityByStrategyId(Long strategyId);
+
+    StrategyRuleEntity queryStrategyRule(Long strategyId, String ruleModel);
 }
