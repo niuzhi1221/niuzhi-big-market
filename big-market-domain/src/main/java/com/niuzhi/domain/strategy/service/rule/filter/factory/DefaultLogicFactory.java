@@ -1,11 +1,10 @@
-package com.niuzhi.domain.strategy.service.rule.factory;
+package com.niuzhi.domain.strategy.service.rule.filter.factory;
 
 import com.niuzhi.domain.strategy.model.entity.RuleActionEntity;
 import com.niuzhi.domain.strategy.service.annotation.LogicStrategy;
-import com.niuzhi.domain.strategy.service.rule.ILogicFilter;
+import com.niuzhi.domain.strategy.service.rule.filter.ILogicFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.extern.java.Log;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @Title: DefaultLogicFactory
  * @Author niuzhi
- * @Package com.niuzhi.domain.strategy.service.rule.factory
+ * @Package com.niuzhi.domain.strategy.service.rule.filter.factory
  * @Date 2026/1/27 15:54
  * @description: 规则工厂
  */

@@ -1,20 +1,18 @@
-package com.niuzhi.domain.strategy.service.raffle;
+package com.niuzhi.domain.strategy.service;
 
 import com.niuzhi.domain.strategy.model.entity.RaffleAwardEntity;
 import com.niuzhi.domain.strategy.model.entity.RaffleFactorEntity;
 import com.niuzhi.domain.strategy.model.entity.RuleActionEntity;
-import com.niuzhi.domain.strategy.model.entity.StrategyEntity;
 import com.niuzhi.domain.strategy.model.vo.RuleLogicCheckTypeVO;
 import com.niuzhi.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 import com.niuzhi.domain.strategy.repository.IStrategyRepository;
-import com.niuzhi.domain.strategy.service.IRaffleStrategy;
 import com.niuzhi.domain.strategy.service.armory.IStrategyDispatch;
-import com.niuzhi.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.niuzhi.domain.strategy.service.rule.chain.ILogicChain;
+import com.niuzhi.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import com.niuzhi.types.enums.ResponseCode;
 import com.niuzhi.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.dom4j.rule.Rule;
 
 /**
  * @Title: AbstractRaffleStrategy
@@ -30,6 +28,14 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
 
     protected IStrategyDispatch strategyDispatch;
 
+    private DefaultChainFactory defaultChainFactory;
+
+    public AbstractRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch, DefaultChainFactory defaultChainFactory) {
+        this.repository = repository;
+        this.strategyDispatch = strategyDispatch;
+        this.defaultChainFactory = defaultChainFactory;
+    }
+
     public AbstractRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch) {
         this.repository = repository;
         this.strategyDispatch = strategyDispatch;
@@ -44,7 +50,8 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
 
-        // 2.策略查询
+// 被责任链代替
+/*        // 2.策略查询
         StrategyEntity strategyEntity = repository.queryStrategyEntityByStrategyId(strategyId);
 
         // 3.抽奖前-规则过滤
@@ -66,12 +73,16 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
             }
         }
         // 4. 默认抽奖流程
-        Integer awardId = strategyDispatch.getRandomAwardId(strategyId);
+        Integer awardId = strategyDispatch.getRandomAwardId(strategyId);*/
 
-        // 5.查询奖品规则[抽奖中(拿到奖品ID时,过滤规则)  、  抽奖后(扣减完奖品库存后过滤，抽奖中拦截和无库存则走兜底)]
+        //  2.责任链处理抽奖
+        ILogicChain logicChain = defaultChainFactory.openLogicChain(strategyId);
+        Integer awardId = logicChain.logic(userId, strategyId);
+
+        // 3.查询奖品规则[抽奖中(拿到奖品ID时,过滤规则)  、  抽奖后(扣减完奖品库存后过滤，抽奖中拦截和无库存则走兜底)]
         StrategyAwardRuleModelVO strategyAwardRuleModelVO = repository.queryStrategyAwardRuleModel(strategyId, awardId);
 
-        // 6.抽奖中规则过滤
+        // 4.抽奖中规则过滤
         RuleActionEntity<RuleActionEntity.RaffleCenterEntity> ruleActionCenterEntity = this.doCheckRaffleCenterLogic(RaffleFactorEntity.builder()
                 .userId(userId)
                 .strategyId(strategyId)

@@ -1,4 +1,4 @@
-package com.niuzhi.domain.strategy.service.rule;
+package com.niuzhi.domain.strategy.service.rule.filter;
 
 import com.niuzhi.domain.strategy.model.entity.RuleActionEntity;
 import com.niuzhi.domain.strategy.model.entity.RuleMatterEntity;

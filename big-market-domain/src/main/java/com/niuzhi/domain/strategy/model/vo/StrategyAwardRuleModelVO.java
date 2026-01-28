@@ -1,6 +1,6 @@
 package com.niuzhi.domain.strategy.model.vo;
 
-import com.niuzhi.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.niuzhi.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import com.niuzhi.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

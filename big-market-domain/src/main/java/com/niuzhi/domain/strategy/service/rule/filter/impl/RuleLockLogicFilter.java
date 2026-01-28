@@ -1,12 +1,12 @@
-package com.niuzhi.domain.strategy.service.rule.impl;
+package com.niuzhi.domain.strategy.service.rule.filter.impl;
 
 import com.niuzhi.domain.strategy.model.entity.RuleActionEntity;
 import com.niuzhi.domain.strategy.model.entity.RuleMatterEntity;
 import com.niuzhi.domain.strategy.model.vo.RuleLogicCheckTypeVO;
 import com.niuzhi.domain.strategy.repository.IStrategyRepository;
 import com.niuzhi.domain.strategy.service.annotation.LogicStrategy;
-import com.niuzhi.domain.strategy.service.rule.ILogicFilter;
-import com.niuzhi.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.niuzhi.domain.strategy.service.rule.filter.ILogicFilter;
+import com.niuzhi.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * @Title: RuleLockLogicFilter
  * @Author niuzhi
- * @Package com.niuzhi.domain.strategy.service.rule.impl
+ * @Package com.niuzhi.domain.strategy.service.rule.filter.impl
  * @Date 2026/1/28 13:36
  * @description: 用户抽奖N次后，对应奖品可解锁抽奖
  */
