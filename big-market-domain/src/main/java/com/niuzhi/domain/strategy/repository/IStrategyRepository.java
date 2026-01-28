@@ -3,6 +3,7 @@ package com.niuzhi.domain.strategy.repository;
 import com.niuzhi.domain.strategy.model.entity.StrategyAwardEntity;
 import com.niuzhi.domain.strategy.model.entity.StrategyEntity;
 import com.niuzhi.domain.strategy.model.entity.StrategyRuleEntity;
+import com.niuzhi.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -31,4 +32,6 @@ public interface IStrategyRepository {
     StrategyRuleEntity queryStrategyRule(Long strategyId, String ruleModel);
 
     String queryStrategyRuleValue(Long strategyId, Integer awardId, String ruleModel);
+
+    StrategyAwardRuleModelVO queryStrategyAwardRuleModel(Long strategyId, Integer awardId);
 }
