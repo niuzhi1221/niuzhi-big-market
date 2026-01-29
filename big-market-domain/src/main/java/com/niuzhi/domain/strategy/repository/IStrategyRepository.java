@@ -3,9 +3,9 @@ package com.niuzhi.domain.strategy.repository;
 import com.niuzhi.domain.strategy.model.entity.StrategyAwardEntity;
 import com.niuzhi.domain.strategy.model.entity.StrategyEntity;
 import com.niuzhi.domain.strategy.model.entity.StrategyRuleEntity;
+import com.niuzhi.domain.strategy.model.vo.RuleTreeVO;
 import com.niuzhi.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,5 +35,7 @@ public interface IStrategyRepository {
 
     String queryStrategyRuleValue(Long strategyId, String ruleModel);
 
-    StrategyAwardRuleModelVO queryStrategyAwardRuleModel(Long strategyId, Integer awardId);
+    StrategyAwardRuleModelVO queryStrategyAwardRuleModelVO(Long strategyId, Integer awardId);
+
+    RuleTreeVO queryRuleTreeVOByTreeId(String treeId);
 }

@@ -1,5 +1,7 @@
 package com.niuzhi.domain.strategy.service.rule.chain;
 
+import com.niuzhi.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
+
 /**
  * @Title: ILogicChain
  * @Author niuzhi
@@ -14,7 +16,7 @@ public interface ILogicChain  extends ILogicChainArmory{
      * @param strategyId    策略ID
      * @return              奖品ID
      */
-    Integer logic(String userId, Long strategyId);
+    DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId);
 
 
 }
