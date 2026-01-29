@@ -2,6 +2,7 @@ package com.niuzhi.domain.strategy.service.raffle;
 
 import com.niuzhi.domain.strategy.model.vo.RuleTreeVO;
 import com.niuzhi.domain.strategy.model.vo.StrategyAwardRuleModelVO;
+import com.niuzhi.domain.strategy.model.vo.StrategyAwardStockKeyVO;
 import com.niuzhi.domain.strategy.repository.IStrategyRepository;
 import com.niuzhi.domain.strategy.service.AbstractRaffleStrategy;
 import com.niuzhi.domain.strategy.service.armory.IStrategyDispatch;
@@ -51,4 +52,13 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
 
     }
 
+    @Override
+    public StrategyAwardStockKeyVO takeQueueValue() throws InterruptedException {
+        return repository.takeQueueValue();
+    }
+
+    @Override
+    public void updateStrategyAwardStock(Long strategyId, Integer awardId) {
+        repository.updateStrategyAwardStock(strategyId, awardId);
+    }
 }

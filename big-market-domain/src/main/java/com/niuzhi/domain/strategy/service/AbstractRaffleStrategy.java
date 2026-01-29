@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
  * @description: 抽奖策略抽象类(是一个抽奖流程模板类，用模板方法模式，固化抽奖主流程，把"抽奖前规则校验"这一可变部分交给子类实现)
  */
 @Slf4j
-public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
+public abstract class AbstractRaffleStrategy implements IRaffleStrategy, IRaffleStock{
 
     // 策略仓储服务 -> domain层像一个大厨，仓储层提供米面粮油
     protected IStrategyRepository repository;

@@ -5,6 +5,7 @@ import com.niuzhi.domain.strategy.model.entity.StrategyEntity;
 import com.niuzhi.domain.strategy.model.entity.StrategyRuleEntity;
 import com.niuzhi.domain.strategy.model.vo.RuleTreeVO;
 import com.niuzhi.domain.strategy.model.vo.StrategyAwardRuleModelVO;
+import com.niuzhi.domain.strategy.model.vo.StrategyAwardStockKeyVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,4 +39,24 @@ public interface IStrategyRepository {
     StrategyAwardRuleModelVO queryStrategyAwardRuleModelVO(Long strategyId, Integer awardId);
 
     RuleTreeVO queryRuleTreeVOByTreeId(String treeId);
+
+    /**
+     * 缓存奖品库存
+     * @param cacheKey      key
+     * @param awardCount    库存值
+     */
+    void cacheStrategyAwardCount(String cacheKey, Integer awardCount);
+
+    /**
+     * 缓存key, decr 方式扣减库存
+     * @param cacheKey  缓存key
+     * @return  扣减结果
+     */
+    Boolean substractionAwardStock(String cacheKey);
+
+    void awardStockConsumeSendQueue(StrategyAwardStockKeyVO strategyAwardStockKeyVO);
+
+    StrategyAwardStockKeyVO takeQueueValue();
+
+    void updateStrategyAwardStock(Long strategyId, Integer awardId);
 }

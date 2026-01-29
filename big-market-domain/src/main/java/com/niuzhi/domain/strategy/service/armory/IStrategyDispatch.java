@@ -1,5 +1,7 @@
 package com.niuzhi.domain.strategy.service.armory;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 /**
  * @Title: IStrategyDispatch
  * @Author niuzhi
@@ -16,4 +18,12 @@ public interface IStrategyDispatch {
     Integer getRandomAwardId(Long strategyId);
 
     Integer getRandomAwardId(Long strategyId, String ruleWeightValue);
+
+    /**
+     * 根据策略ID和奖品ID，扣减奖品缓存库存
+     * @param strategyId    策略ID
+     * @param awardId       奖品ID
+     * @return
+     */
+    Boolean subtractionAwardStock(Long strategyId, Integer awardId);
 }
